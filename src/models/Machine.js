@@ -1,35 +1,35 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema(
+const machineSchema = new mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-      trim: true
-    },
-
-    lastName: {
-      type: String,
-      required: true,
-      trim: true
-    },
-
-    email: {
+    reference: {
       type: String,
       required: true,
       unique: true,
       trim: true
     },
 
-    password: {
+    name: {
       type: String,
-      required: true
+      required: true,
+      trim: true
+    },
+
+    workshop: {
+      type: String,
+      required: true,
+      trim: true
+    },
+
+    status: {
+      type: String,
+      enum: ["available", "maintenance", "out_of_service"],
+      default: "available"
     }
   },
   {
     timestamps: true
-    //aut : createdAt , updatedAt
   }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Machine", machineSchema);
