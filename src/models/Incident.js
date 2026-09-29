@@ -4,6 +4,7 @@ const incidentSchema = new mongoose.Schema(
   {
     machine: {
       type: mongoose.Schema.Types.ObjectId,
+    //   L'ObjectId qui se trouve dans machine correspond à un document du modèle Machine.
       ref: "Machine",
       required: true
     },
