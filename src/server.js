@@ -1,17 +1,22 @@
 const express = require("express");
 const dotenv = require("dotenv");
 
-const mongoDB = require("./config/database");
 const connectDB = require("./config/database");
 
 dotenv.config();
 // process.env.PORT
+
 
 const app = express();
 // app.get(...)
 
 app.use(express.json());
 // Permettre à Express de lire du JSON
+
+const authRoutes = require("./routes/auth.route")
+
+app.use('/auth', authRoutes);
+
 
 app.get("/", (req, res) => {
   res.json({
