@@ -17,6 +17,7 @@ const register = async (req, res)=>{
         });
         
     } catch (error) {
+        console.error(error);
         return res.status(500).json({
             message: "Erreur de serveur"
         });
