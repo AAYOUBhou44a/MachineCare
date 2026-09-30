@@ -1,5 +1,5 @@
 const userService = require("../services/auth.service");
-const { findUserByEmail } = require("../services/auth.service");
+const { findUserByEmail , checkPassword, generateToken} = require("../services/auth.service");
 
 const register = async (req, res)=>{
     try{
@@ -46,6 +46,13 @@ const login = async (req, res)=>{
 
         // 401 pour les identifiant incorrect
         // pour une page ou une resource qui n'existe pas 
+
+        const token = generateToken(user);
+
+        return res.status(200).json({
+            message: "Vous etez connecté",
+            token
+        })
 
 
     }catch(error){
