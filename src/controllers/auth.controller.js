@@ -32,7 +32,7 @@ const login = async (req, res)=>{
         const user = await findUserByEmail(email);
         if(!user){
             return res.status(401).json({
-                message: "Email ou mot de passe incorrect"
+                message: "Email ou mot de passe incorrect email"
             });
         }
 
@@ -40,7 +40,7 @@ const login = async (req, res)=>{
 
         if(!validPassword){
             return res.status(401).json({
-                message: "Email ou mot de passe incorrect"
+                message: "Email ou mot de passe incorrect password"
             });
         }
 
@@ -52,11 +52,19 @@ const login = async (req, res)=>{
         return res.status(200).json({
             message: "Vous etez connecté",
             token
+            //on envoie le token au navigateur du client
         })
 
 
     }catch(error){
         console.error(error);
+
+        if(error.code === 11000){
+            return res.status(409).json({
+                messge:"Cet est déja utilisé"
+            })
+        }
+
         return res.status(500).json({
             message: "Erreur de serveur"
         });
