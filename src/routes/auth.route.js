@@ -4,11 +4,13 @@ const router = express.Router();
 
 const {register, login, getProfile} = require("../controllers/auth.controller");
 
+const {registerSchema, loginSchema} = require("../validations/auth.validation");
+
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post('/register', register);
+router.post('/register', validate(registerSchema),register);
 
-router.post('/login', login);
+router.post('/login', validate(loginSchema), login);
 
 router.get('/profile', authMiddleware, getProfile);
 
