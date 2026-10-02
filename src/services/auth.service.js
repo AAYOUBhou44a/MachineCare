@@ -14,9 +14,7 @@ const createUser = async (data) => {
 };
 
 const findUserByEmail = async (email)=>{
-  return await userRepository.findByEmail({
-    email
-  });
+  return await userRepository.findByEmail(email);
 }
 
 const checkPassword = async (user, password)=>{
